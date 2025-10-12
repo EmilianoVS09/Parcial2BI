@@ -1,30 +1,8 @@
 #Importando las librerias para extracción y conexión a mongo
-import os
-import logging
 import pandas as pd
-from datetime import datetime
 from pymongo import MongoClient
 from pymongo.errors import ConfigurationError
-
-#Clase para configurar el logging
-class Logs:
-    def __init__(self):
-        #Configuración del logging
-        self.fecha_hora = datetime.now().strftime('%Y%m%d_%H%M%S')
-        # Usar la carpeta 'logs' en la raíz del proyecto
-        root_logs_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'logs'))
-        if not os.path.exists(root_logs_path):
-            os.makedirs(root_logs_path)
-        log_file_path = os.path.join(root_logs_path, f'log_{self.fecha_hora}.txt')
-        logging.basicConfig(filename=log_file_path, level=logging.INFO, filemode='a',
-                            format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
-
-    #Función para definir el tipo de mensaje del log
-    def log(self, mensaje, nivel):
-        if nivel == 'info':
-            logging.info(mensaje)
-        elif nivel == 'error':
-            logging.error(mensaje)
+from logs import Logs
 
 class Extraction:
     def __init__(self):
@@ -48,6 +26,7 @@ class Extraction:
     #Función para cargar colecciones a un dataframe
     def load_mongodb_datasets(self, db, colecction_name):
         if db is None:
+            self.logs.log(f'Atención: función de conección no llamada, no se puede continuar con la operación', 'warning')
             raise RuntimeError("Primero se debe llamar al metodo mongodb_connection()")
         
         try:
@@ -61,3 +40,9 @@ class Extraction:
         except Exception as e:
             self.logs.log(f'Error al cargar la coleccion {colecction_name}: {str(e)}', 'error')
             print(f'Error al cargar la colección {colecction_name}')
+
+    def close_mongodb_connection(self, uri):
+        client = MongoClient(uri)
+        if client:
+            client.close()
+            self.logs.log(f'Conexión con MongoDB cerrada existosamente', 'info')
