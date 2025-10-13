@@ -1,0 +1,5 @@
+2025-10-12 19:39:36,002 - INFO - Conexión exitosa a la base de datos: bi_mx
+2025-10-12 19:39:44,942 - INFO - Colección listings_mx añadida al dataframe exitosamente.                           Número de registros: 26067
+2025-10-12 19:41:02,287 - INFO - Colección calendar_mx añadida al dataframe exitosamente.                           Número de registros: 9514717
+2025-10-12 19:41:17,914 - INFO - Colección reviews_mx añadida al dataframe exitosamente.                           Número de registros: 1315986
+2025-10-12 19:41:18,508 - INFO - Conexión con MongoDB cerrada existosamente
