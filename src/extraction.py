@@ -35,7 +35,7 @@ class Extraction:
             df = pd.DataFrame(data)
             n = len(df) #Número de registros de la colección para el log
             self.logs.log(f'Colección {colecction_name} añadida al dataframe exitosamente. \
-                          Número de registros: {n}', 'info')
+                          #Número de registros: {n}', 'info')
             return df
         except Exception as e:
             self.logs.log(f'Error al cargar la coleccion {colecction_name}: {str(e)}', 'error')

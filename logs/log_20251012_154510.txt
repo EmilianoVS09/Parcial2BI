@@ -1,8 +1,0 @@
-2025-10-12 15:45:11,078 - INFO - Conexión exitosa a la base de datos: bi_mx
-2025-10-12 15:45:13,888 - INFO - Colección listings_mx añadida al dataframe exitosamente.                           Número de registros: 26067
-2025-10-12 15:46:37,472 - INFO - Colección calendar_mx añadida al dataframe exitosamente.                           Número de registros: 9514717
-2025-10-12 15:46:53,499 - INFO - Colección reviews_mx añadida al dataframe exitosamente.                           Número de registros: 1315986
-2025-10-12 16:13:34,032 - INFO - Conexión exitosa a la base de datos: bi_mx
-2025-10-12 16:13:38,887 - INFO - Colección listings_mx añadida al dataframe exitosamente.                           Número de registros: 26067
-2025-10-12 16:15:13,160 - INFO - Colección calendar_mx añadida al dataframe exitosamente.                           Número de registros: 9514717
-2025-10-12 16:15:26,550 - INFO - Colección reviews_mx añadida al dataframe exitosamente.                           Número de registros: 1315986
