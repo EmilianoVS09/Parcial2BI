@@ -24,9 +24,9 @@ pip install -r requirements.txt
 
 
 #Contenido recomendado del archivo requirements.txt:
-pandas
-openpyxl
-pymongo
+pandas,
+openpyxl,
+pymongo,
 
 
 (SQLite y logging vienen integrados con Python, no necesitan instalación)
