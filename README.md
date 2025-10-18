@@ -39,6 +39,7 @@ Transformación y limpieza de datos
 Carga en SQLite (data/airbnb.db) y Excel (data/airbnb_limpio.xlsx)
 Generación de logs (logs/etl.log)
 
+INTEGRANTES:
 | Nombre                       | Rol / Responsabilidad                                                                                                            |
 | -----------------------------| ---------------------------------------------------------------------------------------------------------------------------------|
 | **Emiliano Velez suarez**    | Desarrollo de la clase `Transformacion` , normalización de datos, desarrollo de la clase `Extraccion` y conexión con MongoDB     |
