@@ -1,5 +1,4 @@
 #Proyecto ETL – Airbnb Ciudad de México
-#Descripción del Proyecto
 
 Este proyecto implementa un proceso ETL (Extracción, Transformación y Carga) utilizando los datasets de Airbnb Ciudad de México.
 El objetivo es construir un flujo automatizado que permita limpiar, transformar y cargar los datos desde una fuente MongoDB hacia una base de datos SQLite y un archivo Excel (.xlsx) para análisis posteriores o visualización en herramientas como Power BI o Tableau.
