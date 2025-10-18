@@ -5,6 +5,7 @@ from pymongo.errors import ConfigurationError
 from logs import Logs
 
 class Extraction:
+    #Constructor con la clase logs
     def __init__(self):
         self.logs = Logs()
 
