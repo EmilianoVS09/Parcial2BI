@@ -596,7 +596,7 @@ class Transformation:
           - Crear partes de fecha en calendar y buckets de precio en listings/calendar.
 
         Transformaciones:
-          - calendar.date → year, month, day, quarter, weekday, is_weekend.
+          - calendar.date → year, month, day, quarter, week.
           - price_num → price_bucket (listings) / daily_price_bucket (calendar)
             usando quintiles por defecto o bins fijos.
 
@@ -615,8 +615,10 @@ class Transformation:
             self.calendar['month']      = dt.dt.month
             self.calendar['day']        = dt.dt.day
             self.calendar['quarter']    = dt.dt.quarter
-            self.calendar['weekday']    = dt.dt.weekday
-            self.calendar['is_weekend'] = self.calendar['weekday'].isin([5,6]).astype(int)
+            # Semana del mes (1 a 5 normalmente)
+            self.calendar['week_of_month'] = (
+                ((dt.dt.day - 1) // 7 + 1)
+            )
 
         # Buckets de precio
         default_labels = ['Very Low','Low','Medium','High','Very High']
@@ -1024,8 +1026,7 @@ class Transformation:
     # ---------------------------------------------------------------------
     # 6) Pipeline completo
     # ---------------------------------------------------------------------
-    def run(self, amenities_keep=None, verifications_keep=None,
-            price_mode='quantile', price_bins=None, price_labels=None):
+    def run(self, price_mode='quantile', price_bins=None, price_labels=None):
         """
         Propósito:
           - Ejecutar el flujo completo y devolver la sábana final.
