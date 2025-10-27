@@ -1,0 +1,97 @@
+2025-10-26 22:41:27,933 - INFO - === INICIO ETL (main_etl.py) ===
+2025-10-26 22:41:27,977 - INFO - Conexión exitosa a la base de datos: bi_mx
+2025-10-26 22:41:36,189 - INFO - [Origen Mongo] Esperados -> {'listings': 26067, 'calendar': 9514717, 'reviews': 1315986}
+2025-10-26 22:41:37,409 - INFO - Colección listings_mx añadida al dataframe exitosamente.                           #Número de registros: 26067
+2025-10-26 22:42:31,546 - INFO - Colección calendar_mx añadida al dataframe exitosamente.                           #Número de registros: 9514717
+2025-10-26 22:42:42,158 - INFO - Colección reviews_mx añadida al dataframe exitosamente.                           #Número de registros: 1315986
+2025-10-26 22:42:42,593 - INFO - Conexión con MongoDB cerrada existosamente
+2025-10-26 22:42:42,944 - INFO - [INIT] Recibidos | listings: (26067, 77) cols=77 | calendar: (9514717, 8) cols=8 | reviews: (1315986, 7) cols=7
+2025-10-26 22:42:42,944 - INFO - [run] Inicio | price_mode=quantile, price_bins=None, price_labels=None
+2025-10-26 22:42:42,944 - INFO - [normalize_types] Inicio
+2025-10-26 22:44:05,597 - INFO - [normalize_types] Calendar: drop ['adjusted_price', '_id']
+2025-10-26 22:44:05,751 - INFO - [normalize_types] Listings: % → ['host_response_rate_pct', 'host_acceptance_rate_pct']
+2025-10-26 22:44:30,649 - INFO - [normalize_types] Limpieza de texto: 11 cols
+2025-10-26 22:44:30,649 - INFO - [_fill_review_dates] Inicio
+2025-10-26 22:44:33,611 - INFO - [_fill_review_dates] Fin | fuentes: {'reviews_first': 0, 'calendar_first': 3261, 'last_scraped_first': 0, 'fallback_first': 0, 'reviews_last': 0, 'calendar_last': 3261, 'last_scraped_last': 0, 'fallback_last': 0}
+2025-10-26 22:44:33,615 - INFO - [normalize_types] Fin | listings=(26067, 77) | calendar=(9514717, 6) | reviews=(1315986, 7)
+2025-10-26 22:44:33,615 - INFO - [clean_nulls] Inicio
+2025-10-26 22:44:33,682 - WARNING - [clean_nulls] Drops por claves: {'id': 0, 'host_id': 0}
+2025-10-26 22:44:34,171 - INFO - [clean_nulls] host_response_rate_pct: host=0 grupo=3480 global=24
+2025-10-26 22:44:34,222 - INFO - [clean_nulls] host_acceptance_rate_pct: host=0 grupo=2703 global=36
+2025-10-26 22:44:34,282 - INFO - [clean_nulls] review_scores_rating: grupo=3215 barrio=46 global=0 winsor p1..p99
+2025-10-26 22:44:34,341 - INFO - [clean_nulls] review_scores_cleanliness: grupo=3216 barrio=46 global=0 winsor p1..p99
+2025-10-26 22:44:34,400 - INFO - [clean_nulls] review_scores_accuracy: grupo=3216 barrio=46 global=0 winsor p1..p99
+2025-10-26 22:44:34,460 - INFO - [clean_nulls] review_scores_communication: grupo=3216 barrio=46 global=0 winsor p1..p99
+2025-10-26 22:44:34,520 - INFO - [clean_nulls] review_scores_checkin: grupo=3216 barrio=46 global=0 winsor p1..p99
+2025-10-26 22:44:34,580 - INFO - [clean_nulls] review_scores_location: grupo=3216 barrio=46 global=0 winsor p1..p99
+2025-10-26 22:44:34,637 - INFO - [clean_nulls] review_scores_value: grupo=3216 barrio=46 global=0 winsor p1..p99
+2025-10-26 22:44:34,638 - INFO - [clean_nulls] reviews_per_month: 3261 → 0.0
+2025-10-26 22:44:34,641 - INFO - [clean_nulls] latitude: barrio=0 global=0
+2025-10-26 22:44:34,644 - INFO - [clean_nulls] longitude: barrio=0 global=0
+2025-10-26 22:44:34,653 - INFO - [clean_nulls] bathrooms: imputados 3991 desde bathrooms_text (sin redondear).
+2025-10-26 22:44:34,653 - WARNING - [clean_nulls] bathrooms: 20 sin fuente → 0.0.
+2025-10-26 22:44:34,660 - INFO - [clean_nulls] availability_30: grupo=0 global=0 cast→int≥0
+2025-10-26 22:44:34,665 - INFO - [clean_nulls] availability_60: grupo=0 global=0 cast→int≥0
+2025-10-26 22:44:34,670 - INFO - [clean_nulls] availability_90: grupo=0 global=0 cast→int≥0
+2025-10-26 22:44:34,675 - INFO - [clean_nulls] availability_365: grupo=0 global=0 cast→int≥0
+2025-10-26 22:44:34,680 - INFO - [clean_nulls] number_of_reviews: grupo=0 global=0 cast→int≥0
+2025-10-26 22:44:34,685 - INFO - [clean_nulls] number_of_reviews_ltm: grupo=0 global=0 cast→int≥0
+2025-10-26 22:44:34,690 - INFO - [clean_nulls] number_of_reviews_l30d: grupo=0 global=0 cast→int≥0
+2025-10-26 22:44:34,695 - INFO - [clean_nulls] number_of_reviews_ly: grupo=0 global=0 cast→int≥0
+2025-10-26 22:44:34,700 - INFO - [clean_nulls] accommodates: grupo=0 global=0 cast→int≥0
+2025-10-26 22:44:34,723 - INFO - [clean_nulls] bedrooms: grupo=967 global=4 cast→int≥0
+2025-10-26 22:44:34,789 - INFO - [clean_nulls] beds: grupo=3992 global=30 cast→int≥0
+2025-10-26 22:44:34,797 - INFO - [clean_nulls] host_total_listings_count: grupo=5 global=0 cast→int≥0
+2025-10-26 22:44:34,826 - INFO - [clean_nulls] host_is_superhost: 1343 → False
+2025-10-26 22:44:34,829 - INFO - [clean_nulls] host_has_profile_pic: 5 → False
+2025-10-26 22:44:34,832 - INFO - [clean_nulls] host_identity_verified: 5 → False
+2025-10-26 22:44:34,866 - INFO - [clean_nulls] host_since: desde last_scraped=5 | a 1970=0
+2025-10-26 22:44:35,436 - INFO - [clean_nulls] calendar.minimum_nights: 220 → mediana=2.0
+2025-10-26 22:44:35,583 - INFO - [clean_nulls] calendar.maximum_nights: 220 → mediana=1120.0
+2025-10-26 22:44:36,889 - INFO - [clean_nulls] Red de seguridad listings: {'description': "str→'unknown' 767", 'neighborhood_overview': "str→'unknown' 11678", 'host_location': "str→'unknown' 5480", 'host_about': "str→'unknown' 10457", 'host_thumbnail_url': "str→'unknown' 5", 'host_picture_url': "str→'unknown' 5", 'host_listings_count': 'num→mediana(4.0) 5', 'neighbourhood': "str→'unknown' 11676", 'bathrooms_text': "str→'unknown' 27", 'has_availability': "str→'unknown' 991", 'estimated_revenue_l365d': 'num→mediana(57234.0) 3999', 'host_neighbourhood': "str→'unknown' 12192", 'price_num': 'num→mediana(1055.0) 3999'}
+2025-10-26 22:44:37,704 - INFO - [clean_nulls] Fin | tamaños antes L:26067 C:9514717 R:1315986 | después L:26067 C:9514717 R:1315986
+2025-10-26 22:44:37,704 - INFO - [derive_features] Inicio | price_mode=quantile
+2025-10-26 22:44:39,910 - INFO - [derive_features] Fin | listings=(26067, 90) | calendar=(9514717, 12) | reviews=(1315986, 7)
+2025-10-26 22:44:39,910 - INFO - [expand_nested_fields] Inicio
+2025-10-26 22:44:41,506 - INFO - [expand_nested_fields] Fin | amenities=18 verifications=3
+2025-10-26 22:44:41,533 - INFO - [build_flat_sheet] Inicio
+2025-10-26 22:44:42,185 - INFO - [_impute_listing_prices_and_buckets] Inicio
+2025-10-26 22:44:42,367 - INFO - [_impute_listing_prices_and_buckets] Fin | from_calendar=0 | by_neighbourhood=0 | global=0 | bucket_mode=qcut
+2025-10-26 22:44:49,246 - INFO - [build_flat_sheet] Join: filas calendar=9514717 | resultado=9514717 | col_listings_dim=62
+2025-10-26 22:45:07,658 - INFO - [build_flat_sheet] reviews_in_month: 9412966 → 0
+2025-10-26 22:45:13,481 - INFO - [build_flat_sheet] Fin | flat_sheet=(9514717, 77)
+2025-10-26 22:45:15,132 - INFO - [run] Fin | flat_sheet=(9514717, 77)
+2025-10-26 22:45:15,133 - INFO - [Transformacion] DF final con 9514717 filas y 77 columnas.
+2025-10-26 22:45:20,174 - INFO - Carga inicializada con 9514717 registros.
+2025-10-26 22:45:20,174 - INFO - === INICIO DE CARGA DE DATOS ===
+2025-10-26 22:45:20,185 - INFO - Conectado a SQLite: data/airbnb.db
+2025-10-26 22:46:55,809 - INFO - Datos insertados en la tabla 'airbnb_limpio' correctamente.
+2025-10-26 22:46:55,817 - INFO - Conectado a SQLite: data/airbnb.db
+2025-10-26 22:47:15,152 - INFO - Verificación: 9514717 registros encontrados en 'airbnb_limpio'.
+2025-10-26 22:47:16,126 - INFO - [ExcelPart] Inicio | filas=9,514,717 | máx/archivo=200,000 | cols=77
+2025-10-26 22:47:16,127 - INFO - [ExcelPart] Truncando columnas de texto a 500 chars en 12 columnas...
+2025-10-26 22:47:29,972 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_1.xlsx' para filas 0..199,999 (total 200,000)
+2025-10-26 22:49:58,154 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_1.xlsx'
+2025-10-26 22:49:58,155 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_2.xlsx' para filas 200,000..399,999 (total 200,000)
+2025-10-26 22:52:39,631 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_2.xlsx'
+2025-10-26 22:52:39,631 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_3.xlsx' para filas 400,000..599,999 (total 200,000)
+2025-10-26 22:54:49,032 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_3.xlsx'
+2025-10-26 22:54:49,032 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_4.xlsx' para filas 600,000..799,999 (total 200,000)
+2025-10-26 22:56:47,825 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_4.xlsx'
+2025-10-26 22:56:47,826 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_5.xlsx' para filas 800,000..999,999 (total 200,000)
+2025-10-26 22:59:15,863 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_5.xlsx'
+2025-10-26 22:59:15,863 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_6.xlsx' para filas 1,000,000..1,199,999 (total 200,000)
+2025-10-26 23:02:01,642 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_6.xlsx'
+2025-10-26 23:02:01,642 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_7.xlsx' para filas 1,200,000..1,399,999 (total 200,000)
+2025-10-26 23:05:02,254 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_7.xlsx'
+2025-10-26 23:05:02,254 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_8.xlsx' para filas 1,400,000..1,599,999 (total 200,000)
+2025-10-26 23:07:36,549 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_8.xlsx'
+2025-10-26 23:07:36,550 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_9.xlsx' para filas 1,600,000..1,799,999 (total 200,000)
+2025-10-26 23:09:35,241 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_9.xlsx'
+2025-10-26 23:09:35,241 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_10.xlsx' para filas 1,800,000..1,999,999 (total 200,000)
+2025-10-26 23:11:37,223 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_10.xlsx'
+2025-10-26 23:11:37,224 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_11.xlsx' para filas 2,000,000..2,199,999 (total 200,000)
+2025-10-26 23:13:36,615 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_11.xlsx'
+2025-10-26 23:13:36,616 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_12.xlsx' para filas 2,200,000..2,399,999 (total 200,000)
+2025-10-26 23:16:07,774 - INFO - [ExcelPart] OK 'data/airbnb_limpio_part_12.xlsx'
+2025-10-26 23:16:07,775 - INFO - [ExcelPart] Generando 'data/airbnb_limpio_part_13.xlsx' para filas 2,400,000..2,599,999 (total 200,000)
