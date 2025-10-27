@@ -42,7 +42,7 @@ Generación de logs (logs/etl.log)
 INTEGRANTES:
 | Nombre                       | Rol / Responsabilidad                                                                                                            |
 | -----------------------------| ---------------------------------------------------------------------------------------------------------------------------------|
-| **Emiliano Velez suarez**    | Desarrollo de la clase `Transformacion` , normalización de datos, desarrollo de la clase `Extraccion` y conexión con MongoDB     |
+| **Emiliano Velez Suarez**    | Desarrollo de la clase `Transformacion` , normalización de datos, desarrollo de la clase `Extraccion` y conexión con MongoDB     |
 | **Yenifer Gonzalez Quirama** | Implementación de la clase `Carga` , manejo de logs , documentación, pruebas y README.md                                         |
 
 #Ejemplo de Ejecución del ETL:
@@ -65,3 +65,4 @@ Carga
 carga = Carga(df_limpio, sqlite_path="data/airbnb.db")
 carga.ejecutar_carga_completa(table_name="calendar_limpio", excel_path="data/airbnb_limpio.xlsx")
 
+La carga se comprobó, pero no se puede subir al repostorio por ser archivos muy pesados.
