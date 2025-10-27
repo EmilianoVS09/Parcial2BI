@@ -4,3 +4,7 @@ seaborn
 matplotlib
 notebook
 numpy
+sqlalchemy
+pyodbc
+XlsxWriter
+OpenPyXLpy
