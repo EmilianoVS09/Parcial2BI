@@ -349,6 +349,11 @@ class Transformation:
             'number_of_reviews','number_of_reviews_ltm','number_of_reviews_l30d','number_of_reviews_ly',
             'accommodates','bedrooms','bathrooms','beds','host_total_listings_count'
         ] if c in self.listings.columns]
+
+        # 🚫 Evita que bathrooms pase por el cast→floor→int
+        if 'bathrooms' in count_cols:
+            count_cols.remove('bathrooms')
+
         for c in score_cols + rate_cols + count_cols + ['price_num','reviews_per_month','latitude','longitude']:
             if c in self.listings.columns:
                 self.listings[c] = pd.to_numeric(self.listings[c], errors='coerce')
@@ -437,6 +442,7 @@ class Transformation:
             if n_na:
                 self.logs.log(f"[clean_nulls] reviews_per_month: {n_na} → 0.0", "info")
 
+
         # --- Coordenadas: barrio → global ---
         for c in ['latitude','longitude']:
             if c in self.listings.columns:
@@ -453,6 +459,37 @@ class Transformation:
                 filled_glob = m.sum()
                 self.listings[c] = self.listings[c].fillna(glob)
                 self.logs.log(f"[clean_nulls] {c}: barrio={filled_nb} global={filled_glob}", "info")
+
+        # --- bathrooms: imputar SOLO nulos (preservando decimales) ---
+        if 'bathrooms' in self.listings.columns:
+            # Asegurar tipo numérico (sin alterar los no nulos)
+            self.listings['bathrooms'] = pd.to_numeric(self.listings['bathrooms'], errors='coerce')
+
+            imputados = 0
+            if 'bathrooms_text' in self.listings.columns:
+                mask = self.listings['bathrooms'].isna() & self.listings['bathrooms_text'].notna()
+                if mask.any():
+                    extra = (self.listings.loc[mask, 'bathrooms_text']
+                            .astype(str)
+                            .str.extract(r'(\d+(\.\d+)?)')[0]
+                            .astype(float))
+                    self.listings.loc[mask, 'bathrooms'] = extra
+                    imputados = int(mask.sum())
+
+            # Si quedaron NaN sin texto de apoyo, decide tu red de seguridad:
+            restantes = int(self.listings['bathrooms'].isna().sum())
+            if imputados:
+                self.logs.log(
+                    f"[clean_nulls] bathrooms: imputados {imputados} desde bathrooms_text (sin redondear).",
+                    "info"
+                )
+            if restantes:
+                # Política mínima: rellena con 0.0 y registra WARNING
+                self.listings['bathrooms'] = self.listings['bathrooms'].fillna(0.0)
+                self.logs.log(
+                    f"[clean_nulls] bathrooms: {restantes} sin fuente → 0.0.",
+                    "warning"
+                )
 
         # --- Contadores: grupo → global → enteros ≥ 0 ---
         for c in count_cols:
